@@ -1,5 +1,5 @@
 import React, { useState, useReducer, useRef, useCallback, useEffect } from "react";
-import axiosInstance from "./axios/UseAxios";
+import axios from "./axios/UseAxios";
 import BookItem from "./Components/Bookitem";
 import { BookReducer, BookState } from "./Components/Bookreducer";
 import "./App.css";
@@ -18,7 +18,7 @@ const App: React.FC = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axiosInstance.get("/Books");
+        const response = await axios.get("/api/Books");
         dispatch({ type: "LOAD", payload: response.data });
       } catch (error) {
         console.error("Error fetching books", error);
@@ -28,14 +28,14 @@ const App: React.FC = () => {
     fetchBooks();
   }, []);
 
-  useEffect(() => {
-    setFilteredBooks(
-      books.filter((book) =>
-        book.Tittle.toLowerCase().includes(searchTerm.toLowerCase())
-      )
-    );
-    setCurrentPage(1);
-  }, [searchTerm, books]);
+  // useEffect(() => {
+  //   setFilteredBooks(
+  //     books.filter((book) =>
+  //       book.Tittle.toLowerCase().includes(searchTerm.toLowerCase())
+  //     )
+  //   );
+  //   setCurrentPage(1);
+  // }, [searchTerm, books]);
 
   const addBook = async () => {
     if (titleRef.current && authorRef.current && yearRef.current) {
@@ -55,7 +55,7 @@ const App: React.FC = () => {
       };
 
       try {
-        const response = await axiosInstance.post("http://localhost:8000/api/Book", newBook);
+        const response = await axios.post("/api/Book", newBook);
         dispatch({ type: "ADD", payload: response.data });
         titleRef.current.value = "";
         authorRef.current.value = "";
