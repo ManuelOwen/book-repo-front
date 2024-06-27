@@ -13,9 +13,9 @@ const Book: React.FC<BookProps> = ({ book, dispatch }) => {
 
   return (
     <div className="book">
-      <h2>{book.title}</h2>
-      <p>{book.author}</p>
-      <p>{book.year}</p>
+      <h2>{book.Tittle}</h2>
+      <p>{book.Author}</p>
+      <p>{book.year_published}</p>
       <button onClick={handleDelete}>Delete</button>
     </div>
   );
