@@ -9,6 +9,7 @@ const App: React.FC = () => {
   const [filteredBooks, setFilteredBooks] = useState<BookState[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true);
   const booksPerPage = 5;
 
   const titleRef = useRef<HTMLInputElement>(null);
@@ -22,20 +23,22 @@ const App: React.FC = () => {
         dispatch({ type: "LOAD", payload: response.data });
       } catch (error) {
         console.error("Error fetching books", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchBooks();
   }, []);
 
-  // useEffect(() => {
-  //   setFilteredBooks(
-  //     books.filter((book) =>
-  //       book.Tittle.toLowerCase().includes(searchTerm.toLowerCase())
-  //     )
-  //   );
-  //   setCurrentPage(1);
-  // }, [searchTerm, books]);
+  useEffect(() => {
+    setFilteredBooks(
+      books.filter((book) =>
+        book.Tittle.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    );
+    setCurrentPage(1);
+  }, [searchTerm, books]);
 
   const addBook = async () => {
     if (titleRef.current && authorRef.current && yearRef.current) {
@@ -103,21 +106,25 @@ const App: React.FC = () => {
         placeholder="Search by title"
         className="search"
       />
-      <table className="book-table">
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Year Published</th>
-            <th>Events</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentBooks.map((book) => (
-            <BookItem key={book.id} book={book} dispatch={dispatch} />
-          ))}
-        </tbody>
-      </table>
+      {loading ? (
+        <div className="loading">Loading...</div>
+      ) : (
+        <table className="book-table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Author</th>
+              <th>Year Published</th>
+              <th>Events</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentBooks.map((book) => (
+              <BookItem key={book.id} book={book} dispatch={dispatch} />
+            ))}
+          </tbody>
+        </table>
+      )}
       <div className="pagination">
         <button onClick={() => handlePagination("prev")}>Previous</button>
         <button onClick={() => handlePagination("next")}>Next</button>
