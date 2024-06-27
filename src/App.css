@@ -1,0 +1,143 @@
+/* App.css */
+
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+/* App Container */
+.App {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color:grey;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 50px;
+}
+
+/* Header */
+h1 {
+  text-align: center;
+  color: #faf4f4;
+  margin-bottom: 20px;
+}
+
+/* Form Container */
+.form-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.form-container input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-container button {
+  padding: 10px 20px;
+  background-color: #0be1e9;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Search Input */
+.search {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Book Table */
+.book-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.book-table th,
+.book-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.book-table th {
+  background-color: #f2f2f2;
+}
+
+/* Book Item */
+.book-item input {
+  padding: 5px;
+  margin-right: 5px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.book-item button {
+  padding: 5px 10px;
+  margin-right: 5px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.book-item button:hover {
+  background-color: #218838;
+}
+
+.book-item .delete-button {
+  background-color: #f0051c;
+}
+
+.book-item .delete-button:hover {
+  background-color: #c82333;
+}
+
+.book-item .edit-button {
+  background-color: #6d3d06;
+  color: #fff;
+}
+
+.book-item .edit-button:hover {
+  background-color: #e0a800;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: space-between;
+}
+
+.pagination button {
+  padding: 10px 20px;
+  background-color: #16da0f;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+  background-color: #69f70b;
+}
